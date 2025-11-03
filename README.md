@@ -4,6 +4,10 @@
 
 本项目包含一个功能丰富的 SSH 客户端 (`ssh_client.py`) 和一个可选的、用于账户云同步的后端服务器 (`sync_server.py`)。
 
+<img width="1526" height="1233" alt="e5a811ff-5223-4c10-a5cc-148cebe40abb" src="https://github.com/user-attachments/assets/dbc711cf-73ee-4c33-aa4c-f0bec5077187" />
+
+
+
 ## 核心功能
 
 * **多标签终端**: 支持同时连接和管理多个 VPS 会话。
