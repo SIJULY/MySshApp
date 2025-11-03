@@ -183,3 +183,27 @@ pyinstaller --noconsole --onefile MySshApp.spec
 pyinstaller --noconsole --onefile --name MySshApp --add-data "venv\Lib\site-packages\PySide6\QtWebEngineProcess.exe;." ssh_client.py
 ```
 
+### 3.3 打包为 macOS (.app)
+
+在 macOS 上打包 QtWebEngine 应用是极其困难的，因为它涉及到沙盒、权限和 `QtWebEngineProcess` 辅助程序。
+
+**基础命令 (通常会失败):**
+
+```bash
+pyinstaller --windowed --onefile --name MySshApp ssh_client.py
+```
+推荐的方法 (使用 .spec 和 codesign):
+
+你需要一个 .spec 文件（如上所述）来确保 PySide6 的所有部分被包含。
+
+由于 macOS 的安全策略，QtWebEngineProcess 必须被正确地代码签名才能运行。
+
+你需要一个 Apple 开发者 ID 来进行签名，或者创建一个自签名证书。
+
+打包命令（在有了 .spec 文件后）会是：
+```bash
+pyinstaller --windowed MySshApp.spec --osx-sign-identity "你的签名ID" --osx-entitlements-file "entitlements.plist"
+```
+entitlements.plist 文件需要包含允许 JIT 和网络访问的权限。
+
+打包总结: 在 Windows 和 macOS 上打包 QtWebEngine 应用非常复杂，远远超出了简单 pyinstaller 命令的范畴，需要对特定平台的打包和签名有深入的了解。
