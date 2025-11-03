@@ -26,7 +26,7 @@
 MySshApp/
 ├── ssh_client.py       # 客户端主程序
 └── sync_server.py      # (可选) 同步服务器的 Flask 后端
-
+```
 ## 1. 如何运行客户端 (ssh_client.py)
 
 这是你的本地电脑上需要运行的主程序。
